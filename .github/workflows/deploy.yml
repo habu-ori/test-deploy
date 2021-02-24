@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       
-      - name: Public IP
+      - name: Install Public IP Lib
         id: ip
-        uses: haythem/public-ip@v1
-
+        uses: haythem/public-ip@v1.2
+        
       - uses: actions/checkout@v2
       - name: Deploy
         env:
