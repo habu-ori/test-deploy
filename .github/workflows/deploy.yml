@@ -46,7 +46,7 @@ jobs:
           cd test-deploy &&
           eval `ssh-agent` &&
           ssh-add ~/.ssh/github_key &&
-          ssh -T github
+          git pull --rebase origin main
           '
 
           # SSHのポートを閉じる
