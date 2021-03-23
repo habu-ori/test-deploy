@@ -45,14 +45,6 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} '
           cd test-deploy &&
-          NEXT_PID=`lsof -i:3000 -t` &&
-          STORY_BOOK_PID=`lsof -i:6006 -t` &&
-          if [ "$NEXT_PID" != '' ]; then
-            kill -9 "$NEXT_PID"
-          fi &&
-          if [ "$NEXT_PID" != '' ]; then
-            kill -9 "$STORY_BOOK_PID"
-          fi &&
           eval `ssh-agent` &&
           ssh-add ~/.ssh/github_key &&
           git pull --rebase origin main
