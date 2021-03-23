@@ -23,7 +23,7 @@ jobs:
           ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
           SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
           SECURITY_GROUP: ${{ secrets.SECURITY_GROUP }}
-        if: failure() && echo "curlは異常終了"
+        if: failure() && aws --profile eyemovic-dev ec2 revoke-security-group-ingress --group-id ${SECURITY_GROUP} --protocol tcp --port 22 --cidr "$IP_ADDRESS"/32
         run: |
           # https://github.com/haythem/public-ip
           IP_ADDRESS=`echo ${{ steps.ip.outputs.ipv4 }}`
