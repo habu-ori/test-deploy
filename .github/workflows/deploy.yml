@@ -47,6 +47,11 @@ jobs:
           eval `ssh-agent` &&
           ssh-add ~/.ssh/github_key &&
           killall node &&
+          if [ $? = 0 ]; then &&
+            echo "curlは正常終了" &&
+          else &&
+            echo "curlは異常終了" &&
+          fi &&
           git pull --rebase origin main
           '
 
