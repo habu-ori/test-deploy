@@ -45,15 +45,23 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} '
           cd test-deploy &&
+          NEXT_PID=`lsof -i:3000 -t` &&
+          STORY_BOOK_PID=`lsof -i:6006 -t` &&
+          if [ "$NEXT_PID" != '' ]; then
+            kill -9 "$NEXT_PID"
+          fi &&
+          if [ "$NEXT_PID" != '' ]; then
+            kill -9 "$STORY_BOOK_PID"
+          fi &&
           eval `ssh-agent` &&
           ssh-add ~/.ssh/github_key &&
-          killall node &&
           git pull --rebase origin main
           '
 
           # SSHのポートを閉じる
           aws --profile eyemovic-dev ec2 revoke-security-group-ingress --group-id ${SECURITY_GROUP} --protocol tcp --port 22 --cidr "$IP_ADDRESS"/32
 
+      # デプロイに失敗したら
       - name: run if deploy failed
         if: failure() && steps.deploy.outcome == 'failure'
         env:
