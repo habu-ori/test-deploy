@@ -74,3 +74,4 @@ jobs:
           aws configure get aws_access_key_id --profile eyemovic-dev
 
           aws --profile eyemovic-dev ec2 revoke-security-group-ingress --group-id ${SECURITY_GROUP} --protocol tcp --port 22 --cidr "$IP_ADDRESS"/32
+
