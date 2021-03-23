@@ -56,7 +56,7 @@ jobs:
 
       - name: run if deploy failed
         if: failure() && steps.deploy.outcome == 'failure'
-        run: echo "${{ steps.deploy.outcome }}"
+        run:           aws --profile eyemovic-dev ec2 revoke-security-group-ingress --group-id ${SECURITY_GROUP} --protocol tcp --port 22 --cidr "$IP_ADDRESS"/32
 
 
 
