@@ -46,8 +46,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} '
           cd test-deploy &&
           eval `ssh-agent` &&
-          yum -y install lsof &&
-          NEXT_PID=`lsof -i:3000 -t` &&
+          NEXT_PID=`lsof -i` &&
           ssh-add ~/.ssh/github_key &&
           git pull --rebase origin main
           '
