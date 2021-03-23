@@ -23,6 +23,7 @@ jobs:
           ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
           SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
           SECURITY_GROUP: ${{ secrets.SECURITY_GROUP }}
+        if: failure() && echo "curlは異常終了"
         run: |
           # https://github.com/haythem/public-ip
           IP_ADDRESS=`echo ${{ steps.ip.outputs.ipv4 }}`
@@ -47,11 +48,6 @@ jobs:
           eval `ssh-agent` &&
           ssh-add ~/.ssh/github_key &&
           killall node &&
-          if [ $? = 0 ]; then
-            echo "curlは正常終了"
-          else
-            echo "curlは異常終了"
-          fi &&
           git pull --rebase origin main
           '
 
