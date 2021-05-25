@@ -1,8 +1,8 @@
 name: TestDeploy
 
-on:
-  push:
-    branches: [main]
+# on:
+#   push:
+#     branches: [main]
 
 jobs:
   deploy:
@@ -46,7 +46,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} '
           cd test-deploy &&
           eval `ssh-agent` &&
-          NEXT_PID=`echo ${{ lsof -i }}` &&
+          NEXT_PID=`lsof -i` &&
           ssh-add ~/.ssh/github_key &&
           git pull --rebase origin main
           '
