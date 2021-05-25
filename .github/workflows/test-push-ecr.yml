@@ -9,10 +9,16 @@ jobs:
     if: ${{ github.ref == 'refs/heads/production' }}
     environment:
       name: production
+    steps:
+      run: |
+        echo set environment production
   set-environment-to-staging:
     if: ${{ github.ref == 'refs/heads/main' }}
     environment:
       name: staging
+    steps:
+      run: |
+        echo set environment staging
   push-to-ecr:
     runs-on: ubuntu-latest
     timeout-minutes: 300
