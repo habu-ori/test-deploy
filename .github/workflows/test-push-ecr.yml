@@ -23,14 +23,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 300
     environment:
-      name: production
-      if: ${{ github.ref == 'refs/heads/main' }}
+      name: ${{ github.repository }}
     steps:
       - uses: actions/checkout@v2
 
       - name: Build, tag, and push image to Amazon ECR
         env:
-          A: ${{ secrets.A }}
+          MAIN: ${{ secrets.MAIN }}
         run: |
-          echo $A
+          echo $MAIN
           
