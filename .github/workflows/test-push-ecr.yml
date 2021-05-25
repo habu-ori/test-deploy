@@ -29,7 +29,7 @@ jobs:
 
       - name: Build, tag, and push image to Amazon ECR
         env:
-          MAIN: ${{ secrets.MAIN }}
+          AAA: ${{ secrets.AAA }}
         run: |
-          echo $MAIN
+          echo $AAA
           
