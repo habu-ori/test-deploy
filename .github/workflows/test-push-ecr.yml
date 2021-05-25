@@ -9,11 +9,8 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
     environment:
       name: staging
-
     runs-on: ubuntu-latest
     timeout-minutes: 300
-    environment:
-      name: ${{ github.repository }}
     steps:
       - uses: actions/checkout@v2
 
@@ -27,11 +24,8 @@ jobs:
     if: ${{ github.ref == 'refs/heads/production' }}
     environment:
       name: production
-
     runs-on: ubuntu-latest
     timeout-minutes: 300
-    environment:
-      name: ${{ github.repository }}
     steps:
       - uses: actions/checkout@v2
 
