@@ -31,5 +31,5 @@ jobs:
         env:
           AAA: ${{ secrets.AAA }}
         run: |
-          echo $AAA
+          echo $AAAA
           
