@@ -31,5 +31,5 @@ jobs:
         env:
           AAA: ${{ secrets.AAAA }}
         run: |
-          echo ${{ github.repository }}
+          echo "${GITHUB_REF}"
           
