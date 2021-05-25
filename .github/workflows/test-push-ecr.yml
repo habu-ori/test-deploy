@@ -5,24 +5,25 @@ on:
     branches: ['main', 'production']
 
 jobs:
-  set-environment-to-production:
-    if: ${{ github.ref == 'refs/heads/production' }}
-    environment:
-      name: production
-    steps:
-      run: |
-        echo set environment production
-  set-environment-to-staging:
-    if: ${{ github.ref == 'refs/heads/main' }}
-    environment:
-      name: staging
-    steps:
-      run: |
-        echo set environment staging
+  # set-environment-to-production:
+  #   if: ${{ github.ref == 'refs/heads/production' }}
+  #   environment:
+  #     name: production
+  #   steps:
+  #     run: |
+  #       echo set environment production
+  # set-environment-to-staging:
+  #   if: ${{ github.ref == 'refs/heads/main' }}
+  #   environment:
+  #     name: staging
+  #   steps:
+  #     run: |
+  #       echo set environment staging
   push-to-ecr:
     runs-on: ubuntu-latest
     timeout-minutes: 300
-
+    environment:
+      name: production
     steps:
       - uses: actions/checkout@v2
 
