@@ -51,7 +51,7 @@ jobs:
       - name: Build, tag, and push image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY }}
+          ECR_REPOSITORY: aaaaaaaaaaa
           IMAGE_TAG: v1.0.0
           API_BASE_URL: https://www.youtube.com:1111/
         run: |
