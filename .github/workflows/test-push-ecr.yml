@@ -56,7 +56,4 @@ jobs:
           # API_BASE_URL: https://www.youtube.com:1111/
           # IMAGE_TAG: `date +%s`
         run: |
-          # IMAGE_TAG=`date +%s`
-          echo "REPOSITORY:`date +%s`"
-          # docker build --build-arg api_base_url="$API_BASE_URL" -t "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" .
-          # # docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker build --build-arg api_base_url="$API_BASE_URL" -t "$ECR_REGISTRY/$ECR_REPOSITORY:`date +%s`" .
